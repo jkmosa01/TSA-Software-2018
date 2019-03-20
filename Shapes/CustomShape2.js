@@ -72,12 +72,8 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
   
     console.log(verticies.length+" Vertices");
 console.log(faces.length+" Faces");
-<<<<<<< HEAD
 console.log("Shape Ends at "+index);
 
-=======
-  
->>>>>>> parent of a010f72... Fixed missing characters in vertices and objects being created too early
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 
     var geometry = new THREE.BufferGeometry().fromGeometry(newGeometry); //where error is
