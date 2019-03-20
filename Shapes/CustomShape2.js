@@ -71,8 +71,7 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
     //console.log( newGeometry.geometry.isBufferGeometry );
   
     console.log(verticies.length+" Vertices");
-console.log(faces.length+" Faces");
-console.log("Shape Ends at "+index);
+    console.log(faces.length+" Faces");
 
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 
