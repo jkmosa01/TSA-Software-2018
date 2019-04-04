@@ -1,7 +1,5 @@
 //jordan's code
 
-
-
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
     let sideBar=document.getElementById('listButtons');
@@ -25,13 +23,12 @@ function showList(){
 }
 
 function setSelectedShape(num){
-
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     let color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
+    color += rgbToHex(shapes[selectedShape].material.color['r']*255)
+    color += rgbToHex(shapes[selectedShape].material.color['g']*255)
+    color += rgbToHex(shapes[selectedShape].material.color['b']*255)
     document.getElementById('colorChanger').value = color;
     document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
@@ -68,12 +65,6 @@ function cameraMenu(){
     document.getElementById('xPositionBox').value = xPosition;
     document.getElementById('yPositionBox').value = yPosition;
     document.getElementById('zPositionBox').value = zPosition;
-    document.getElementById('xCCenterBox').value = xCCenter;
-    document.getElementById('yCCenterBox').value = yCCenter;
-    document.getElementById('zCCenterBox').value = zCCenter;
-    document.getElementById('xCLookBox').value = xCLook;
-    document.getElementById('yCLookBox').value = yCLook;
-    document.getElementById('zCLookBox').value = zCLook;
     console.log("Showed Camera")
 
 }
@@ -159,10 +150,10 @@ function newLightMenu() {
 function lightEditMenu(){
     hideAll();
     document.getElementById("lightEditMenu").style.display="inherit";
-    if (lights[selectedLight].type == "HemisphereLight"){
-        document.getElementById("hemisphereLightColor").style.display="inherit";
+    if (lights[selectedLight].type == "AmbientLight" || lights[selectedLight].type == "HemisphereLight"){
+        document.getElementById("lightPositionMenu").style.display="none";
     }else {
-        document.getElementById("hemisphereLightColor").style.display="none";
+        document.getElementById("lightPositionMenu").style.display="inherit";
     }
 }
 

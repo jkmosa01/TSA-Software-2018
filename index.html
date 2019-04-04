@@ -273,36 +273,6 @@
                 <label class="mdl-textfield__label" for="zPositionBox">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='xCCenterBox' onchange="xCCenter = Number(this.value)" onkeyup="xCCenter = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="xCCenterBox">X Camera Rotation Center</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='yCCenterBox' onchange="yCCenter = Number(this.value)" onkeyup="yCCenter = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="yCCenterBox">Y Camera Rotation Center</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='zCCenterBox' onchange="zCCenter = Number(this.value)" onkeyup="zCCenter = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="zCCenterBox">Z Camera Rotation Center</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='xCLookBox' onchange="xCLook = Number(this.value)" onkeyup="xCLook = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="xCCenterBox">X Camera Focus</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='yCLookBox' onchange="yCLook = Number(this.value)" onkeyup="yCLook = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="yCCenterBox">Y Camera Focus</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='zCLookBox' onchange="zCLook = Number(this.value)" onkeyup="zCLook = Number(this.value)" value="0">
-                <label class="mdl-textfield__label" for="zCCenterBox">Z Camera Focus</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
         </div>
         
         <div id="keyMenu">
@@ -404,23 +374,25 @@
         </div>
 
         <div id="lightEditMenu" style="display: none">
-            <h3>
-                Position
-            </h3>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
-                <label class="mdl-textfield__label" for="lPosX">X Position</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
-                <label class="mdl-textfield__label" for="lPosY">Y Position</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
-                <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
+            <div id="lightPositionMenu">
+                <h3>
+                    Position
+                </h3>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosX">X Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosY">Y Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
             </div>
 
             <h3>
@@ -432,10 +404,7 @@
             <h3>
                 Color
             </h3>
-            <input type="color" value="#87CEEB" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
-            <div id="hemisphereLightColor" style="display: none">
-                <input type="color" value="#654321" id="groundColorChanger" onchange="changeGroundLightColor(this.value)"><br>
-            </div>
+            <input type="color" value="#FF0000" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
         </div>
 
     </div>

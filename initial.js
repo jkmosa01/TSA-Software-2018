@@ -107,9 +107,6 @@ var Rz2v, Ry2v;
 var zoom1v, zoom1Zv;
 var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
-
-
-
 //Stuff for saves
 
 saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
