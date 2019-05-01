@@ -753,6 +753,7 @@ Width and top are being applied with javascript at runtime
     background-color: var(--std_color_primary);
     margin-left: auto;
     margin-right: auto;
+    overflow-y: auto;
     /* margin-top: auto; */
     /* margin-bottom: auto; */
 }
