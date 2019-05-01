@@ -1,14 +1,21 @@
 //jordan's code
 
+
+
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    var sideBar=document.getElementById('listButtons');
+    let sideBar=document.getElementById('listButtons');
+    let sideBarLight = document.getElementById("lightButtons");
     hideAll();
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
-    for (var i=0; i<shapes.length; i++){
+    sideBarLight.innerHTML="";
+    for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
         sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
+    }
+    for (let i = 0; i < lights.length; i++){
+        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button>";
     }
     console.log("Showed List");
     if(usingTutorial){
@@ -18,25 +25,42 @@ function showList(){
 }
 
 function setSelectedShape(num){
+
     selectedShape = num;
-    document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    var color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255)
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255)
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255)
-    document.getElementById('colorChanger').value = color;
-    document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
-    document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
-    document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
-    document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
-    document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
-    document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
-    document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    document.getElementById('dimensionX').value = scales[selectedShape][0];
-    document.getElementById('dimensionY').value = scales[selectedShape][1];
-    document.getElementById('dimensionZ').value = scales[selectedShape][2];
+    //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
+    let color = "#";
+    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
+    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
+    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
+    //TEMPORARY COMMENTED OUT
+    // document.getElementById('colorChanger').value = color;
+    // document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
+    // document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
+    // document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
+    // document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
+    // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
+    // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
+    // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
+    // document.getElementById('dimensionX').value = scales[selectedShape][0];
+    // document.getElementById('dimensionY').value = scales[selectedShape][1];
+    // document.getElementById('dimensionZ').value = scales[selectedShape][2];
     editMenu();
     console.log("Set Shape Num");
+}
+
+function setSelectedLight(num) {
+    selectedLight = num;
+    let color = "#";
+    color += rgbToHex(lights[selectedLight].color['r']*255);
+    color += rgbToHex(lights[selectedLight].color['g']*255);
+    color += rgbToHex(lights[selectedLight].color['b']*255);
+    document.getElementById("lightColorChanger").value = color;
+    document.getElementById("lPosX").value = lights[selectedLight].position.x;
+    document.getElementById("lPosY").value = lights[selectedLight].position.y;
+    document.getElementById("lPosZ").value = lights[selectedLight].position.z;
+    document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
+    document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
+    lightEditMenu();
 }
 
 function cameraMenu(){
@@ -45,36 +69,59 @@ function cameraMenu(){
     document.getElementById('xPositionBox').value = xPosition;
     document.getElementById('yPositionBox').value = yPosition;
     document.getElementById('zPositionBox').value = zPosition;
+    document.getElementById('xCCenterBox').value = xCCenter;
+    document.getElementById('yCCenterBox').value = yCCenter;
+    document.getElementById('zCCenterBox').value = zCCenter;
+    document.getElementById('xCLookBox').value = xCLook;
+    document.getElementById('yCLookBox').value = yCLook;
+    document.getElementById('zCLookBox').value = zCLook;
     console.log("Showed Camera")
 
 }
-
-
+function userMenu(){
+    document.getElementById("userPage").style.display = "inherit";
+    document.getElementById("settingsBackground").style.display = "inherit";
+    if(user!=null){
+        firestore.collection("lists").doc(user.uid).get().then(function(doc){
+            if(doc.exists){
+                let data = doc.data();
+                document.getElementById("loadCloudSelect").innerHTML = "";
+                for (let key in data) {
+                    if (!data.hasOwnProperty(key)) continue;
+                    document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
+                }
+            }
+        })
+    }
+}
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
-    document.getElementById("sideBarList").style.display="none";
-    document.getElementById("sideBarBoxEdit").style.display="none";
-    document.getElementById("sideBarCamera").style.display="none";
-    document.getElementById("colorMenu").style.display="none";
-    document.getElementById("positionMenu").style.display="none";
-    document.getElementById("keyMenu").style.display="none";
-    document.getElementById("shapeMenu").style.display="none";
-    document.getElementById("addMenu").style.display="none";
-    document.getElementById("rotateMenu").style.display="none";
-    document.getElementById("sceneMenu").style.display='none';
-    document.getElementById('createTextMenu').style.display = 'none';
-    document.getElementById('createCustomMenu').style.display = 'none';
-    console.log("Hide all")
+    // document.getElementById("sideBarList").style.display="none";
+    // document.getElementById("sideBarBoxEdit").style.display="none";
+    // document.getElementById("sideBarCamera").style.display="none";
+    // document.getElementById("colorMenu").style.display="none";
+    // document.getElementById("positionMenu").style.display="none";
+    // document.getElementById("keyMenu").style.display="none";
+    // document.getElementById("shapeMenu").style.display="none";
+    // document.getElementById("addMenu").style.display="none";
+    // document.getElementById("rotateMenu").style.display="none";
+    // document.getElementById("sceneMenu").style.display='none';
+    // document.getElementById('createTextMenu').style.display = 'none';
+    // document.getElementById('createCustomMenu').style.display = 'none';
+    // document.getElementById("lightMenu").style.display='none';
+    // document.getElementById("addLightMenu").style.display="none";
+    // document.getElementById("lightEditMenu").style.display="none";
+    // console.log("Hide all")
 }
 
 function editMenu() {
-    hideAll();
-    document.getElementById("sideBarBoxEdit").style.display = "inherit";
-    document.getElementById("positionMenu").style.display = "inherit";
-    document.getElementById("colorMenu").style.display = "inherit";
-    document.getElementById("rotateMenu").style.display="inherit";
-    console.log("Showed Menu");
+    // hideAll();
+    // document.getElementById("sideBarBoxEdit").style.display = "inherit";
+    // document.getElementById("positionMenu").style.display = "inherit";
+    // document.getElementById("colorMenu").style.display = "inherit";
+    // document.getElementById("rotateMenu").style.display="inherit";
+    // console.log("Showed Menu");
 }
 
 function colorMenu(){
@@ -105,6 +152,21 @@ function newShapeMenu(){
     }
 }
 
+function newLightMenu() {
+    hideAll();
+    document.getElementById("addLightMenu").style.display="inherit";
+}
+
+function lightEditMenu(){
+    hideAll();
+    document.getElementById("lightEditMenu").style.display="inherit";
+    if (lights[selectedLight].type == "HemisphereLight"){
+        document.getElementById("hemisphereLightColor").style.display="inherit";
+    }else {
+        document.getElementById("hemisphereLightColor").style.display="none";
+    }
+}
+
 
 function keyMenu(){
     hideAll();
@@ -122,9 +184,14 @@ function sceneMenu() {
 
 }
 
+function lightMenu() {
+    hideAll();
+    document.getElementById("lightMenu").style.display='inherit';
+}
+
 
 function borderVisibility(){
-    var checked = document.getElementById("borderVisibility").checked;
+    let checked = document.getElementById("borderVisibility").checked;
     if(checked){
         borders[selectedShape].visible = true;
         document.getElementById("borderMenu").style.display="inherit";
@@ -132,6 +199,13 @@ function borderVisibility(){
         borders[selectedShape].visible = false;
         document.getElementById("borderMenu").style.display="none";
     }
+}
+
+function hideShowCHK2() {
+    if(document.getElementById('chkbox1').checked)
+        document.getElementById('chkbox2').show();
+    else
+        document.getElementById('chkbox2').hide();
 }
 
 function openSettings(){
@@ -142,6 +216,7 @@ function openSettings(){
 function closeSettings(){
     document.getElementById("settingsPage").style.display = "none";
     document.getElementById("settingsBackground").style.display = "none";
+    document.getElementById("userPage").style.display = "none";
     settingsOpen = false;
 }
 

@@ -1,12 +1,11 @@
 # TSA 2018
+
+Hello everyone! Thank you for checking out the 2018-2019 TSA Software program!
+
+To view our most recent stable build check out this link:
 https://trihardstudios.github.io/TSA-Software-2018/
 
-This is the 2018-2019 TSA project. 
+This program is a complete animation suit designed to be easy to use
+while still being quite powerful. 
 
-This project aims to be a complete animation suite available on all platforms that runs in the browser.
-
-This project utilizes the three.js library.
-
-Development of this project is headed by Daniel F. 
-Our development team consists of Gregory B. and Jordan M. 
-This project also has an intern. His name is Corbin E. and we pay him in coke.
+# Better Read Me coming soon
