@@ -80,8 +80,8 @@ window.onload = function(){
 
 //more variable declarations from toBeSorted
 
-var xPosition = 10;//camera position x
-var yPosition = 10;//camera position y
+var xPosition = 0;//camera position x
+var yPosition = 0;//camera position y
 var zPosition = 10;//camera position z
 var xStart = 0;//where the mouse started clicking x
 var yStart = 0;//where the mouse started clicking y
