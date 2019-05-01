@@ -243,8 +243,8 @@ function UISpacer(){
 
 
 ///This can be cleaned up a little more
-//     document.getElementById("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
-//     document.getElementById("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
     document.getElementById("std_settings").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("std_settings").style.top = UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
@@ -271,9 +271,9 @@ function UISpacer(){
     UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height;
     UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width - UIDiemsions.std_navBar.menuContainer_width;
     document.getElementById("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
-    document.getElementById("animationEngine_renderArea").style.left ="0px";
-    document.getElementById("animationEngine_renderArea").style.height =/*(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;*/
-    document.getElementById("animationEngine_renderArea").style.width ="100%"/*(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;*/
+    document.getElementById("animationEngine_renderArea").style.left ="288px";
+    document.getElementById("animationEngine_renderArea").style.height =(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("animationEngine_renderArea").style.width =(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;
 
 
 
