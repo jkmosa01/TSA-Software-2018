@@ -4,4 +4,4 @@ function handleOrientation(event) {
     camera.rotation.y = -event.alpha * Math.PI/180;
 }
 window.addEventListener('deviceorientation', handleOrientation);
-alert("VR v0.1");
+alert("VR v0.2");
