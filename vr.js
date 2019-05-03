@@ -5,7 +5,7 @@
 //     camera.rotation.y = (event.alpha+90) * Math.PI/180;
 // }
 // window.addEventListener('deviceorientation', handleOrientation);
-// alert("VR v0.3.1");
+alert("VR v0.4.1");
 // function setOrientationControls(e) {
 //     if (!e.alpha) {
 //         return;
@@ -150,4 +150,4 @@ var VRControls =
     }();
 
 // exports.default = VRControls;
-;
+const controls = new VRControls(camera);
